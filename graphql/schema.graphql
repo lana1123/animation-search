@@ -1,0 +1,41 @@
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+type Query {
+    users: [User] @all
+    user(id: ID @eq): User @find
+    animations: [Animation] @all
+    animation(id: ID @eq): Animation @find
+    tags: [Tag] @all
+    tag(id: ID @eq): Tag @find
+    searchQuery(search: String!): [Animation]
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    animations: [Animation] @hasMany
+}
+
+type Animation {
+    id: ID!
+    name: String!
+    style: String!
+    jsonURL: String!
+    downloads: Int!
+    created_at: DateTime!
+    user: User! @belongsTo
+    tags: [Tag] @belongsToMany
+}
+
+type Tag {
+    id: ID!
+    type: String!
+    description: String!
+    animations: [Animation] @belongsToMany
+}
+
