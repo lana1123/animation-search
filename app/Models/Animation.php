@@ -26,7 +26,9 @@ class Animation extends Model
         if($keyword) {
             return $query->whereHas('tags', function($q) use ($keyword) {
                 $q->where('description', 'like','%'.$keyword.'%');
-            })->orWhere('style','like','%'.$keyword.'%')->orWhereHas('user', function($q) use ($keyword) {
+            })->orWhere('style','like','%'.$keyword.'%')
+            ->orWhere('name','like','%'.$keyword.'%')->
+            orWhereHas('user', function($q) use ($keyword) {
                 $q->where('name', 'like','%'.$keyword.'%');
             })->orderBy('created_at','desc');
         }
