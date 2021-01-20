@@ -3,3 +3,5 @@
 - composer install
 - php artisan passport:keys
 - paste .env into this project root folder
+- create your own local database and set the database name, username and password accordingly at the .env file
+- then run php artisan migrate --seed
