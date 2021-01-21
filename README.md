@@ -1,7 +1,8 @@
 - git clone from https://github.com/lana1123/animation-search
 - cd animation-search
 - composer install
+- php artisan passport:install
+- copy the value for client ID 2 and its secret and paste into your .env file (.env file should be at project root folder)
 - php artisan passport:keys
-- paste .env into this project root folder
 - create your own local database and set the database name, username and password accordingly at the .env file
 - then run php artisan migrate --seed
